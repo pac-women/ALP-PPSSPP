@@ -22,28 +22,30 @@ Device                            Boot   Start     End Sectors  Size Id Type
 ./batocera-rg552-34-20220309.img1        32768 6324223 6291456    3G  c W95 FAT
 ./batocera-rg552-34-20220309.img2      6324224 6848511  524288  256M 83 Linux
 ```
-## Mount the first partition, offset=32768*512=16777216
+## Mount the first partition
+offset=32768*512=16777216
 ```
 $ mkdir batocera_partition
 $ sudo mount -o loop,offset=16777216  ./batocera-rg552-34-20220309.img batocera_partition
 ```
 
 ## copy the root filesystem from first partition
-```$ cp batocera_partition/boot/batocera .```
- 
+```$ cp batocera_partition/boot/batocera .
+
 ## unmount it
-```$ sudo umount batocera_partition```
+$ sudo umount batocera_partition
  
 ## mount root filesystem
-sudo mount batocera batocera_partition/
+$ sudo mount batocera batocera_partition/
+```
  
-## copy PPSSPP and unmount
+## copy PPSSPP binary and unmount
 ```
 $ cp batocera_partition/usr/bin/PPSSPP  .
 $ sudo umount batocera_partition 
 ```
 
-## need to patch elf
+## need to patch elf for PPSSPP binary on ALP
 Ref: https://stackoverflow.com/questions/847179/multiple-glibc-libraries-on-a-single-host
 ```
 $ source ~/rk3399env.sh
