@@ -25,7 +25,10 @@ Device                            Boot   Start     End Sectors  Size Id Type
 ./batocera-rg552-34-20220309.img2      6324224 6848511  524288  256M 83 Linux
 ```
 ## Mount the first partition
-offset=32768*512=16777216
+
+* offset = starting address of first partition = first start sector * sector size
+* For example, in the fdisk output above, it's 32768 * 512 = 16777216
+
 ```
 $ mkdir batocera_partition
 $ sudo mount -o loop,offset=16777216  ./batocera-rg552-34-20220309.img batocera_partition
@@ -44,7 +47,7 @@ $ sudo mount batocera batocera_partition/
 
 ## copy whole PPSSPP folder contents to OUTPUT folder
 ```
-$ cp -r batocera_partition/usr/share/ppsspp/PPSSPP ./OUTPUT/
+$ cp -r batocera_partition/usr/share/ppsspp/PPSSPP ./OUTPUT/PPSSPP/
 ```
 
 ## copy PPSSPP binary and unmount
@@ -68,16 +71,15 @@ $ file ./PPSSPP
 
 ## copy SQUASHFS/lib and SQUASHFS/usr/lib to mnt/lib and mnt/usr/lib
 ```
+$ cd ../../
 $ sudo mount batocera batocera_partition  # batocera is the squashfs file from batocera from previous step
-$ cp -P batocera_partition/lib/* mnt/lib/
-$ cp -P batocera_partition/usr/lib/* mnt/usr/lib/ 
+$ mkdir -p OUTPUT/PPSSPP/mnt/lib/
+$ mkdir -p OUTPUT/PPSSPP/mnt/usr/lib/
+$ cp -P batocera_partition/lib/* OUTPUT/PPSSPP/mnt/lib/
+$ cp -P batocera_partition/usr/lib/* OUTPUT/PPSSPP/mnt/usr/lib/ 
 ```
 
-## Rename OUTPUT to PPSSPP to pack
-```
-cd ..
-mv OUTPUT PPSSPP
-```
+## OUTPUT/PPSSPP is our packing directory
 
 ## launch step
 ```$ LD_PRELOAD=mnt/usr/lib/libstdc++.so.6:mnt/lib/libc.so.6  ./PPSSPP XXXX.cso```
