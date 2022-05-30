@@ -62,9 +62,9 @@ $ file ./PPSSPP
 
 ## copy SQUASHFS/lib and SQUASHFS/usr/lib to mnt/lib and mnt/usr/lib
 ```
-$ sudo mount batocera mnt_batocera  # batocera is the squashfs file from batocera, mnt_batocera  is a mount directory
-$ cp -P mnt_batocera/lib/* mnt/lib/
-$ cp -P mnt_batocera/usr/lib/* mnt/usr/lib/ 
+$ sudo mount batocera batocera_partition  # batocera is the squashfs file from batocera, mnt_batocera  is a mount directory
+$ cp -P batocera_partition/lib/* mnt/lib/
+$ cp -P batocera_partition/usr/lib/* mnt/usr/lib/ 
 ```
 
 ## launch step
