@@ -41,16 +41,22 @@ $ sudo umount batocera_partition
 ## mount root filesystem
 $ sudo mount batocera batocera_partition/
 ```
- 
+
+## copy whole PPSSPP folder contents to OUTPUT folder
+```
+$ cp -r batocera_partition/usr/share/ppsspp/PPSSPP ./OUTPUT/
+```
+
 ## copy PPSSPP binary and unmount
 ```
-$ cp batocera_partition/usr/bin/PPSSPP  .
-$ sudo umount batocera_partition 
+$ cp batocera_partition/usr/bin/PPSSPP  ./OUTPUT/
+$ sudo umount batocera_partition
 ```
 
 ## need to patch elf for PPSSPP binary on ALP
 Ref: https://stackoverflow.com/questions/847179/multiple-glibc-libraries-on-a-single-host
 ```
+$ cd OUTPUT
 $ source ~/rk3399env.sh
 $ patchelf --set-interpreter mnt/lib/ld-linux-aarch64.so.1 --set-rpath mnt/lib/ ./PPSSPP
 ```
@@ -66,6 +72,8 @@ $ sudo mount batocera batocera_partition  # batocera is the squashfs file from b
 $ cp -P batocera_partition/lib/* mnt/lib/
 $ cp -P batocera_partition/usr/lib/* mnt/usr/lib/ 
 ```
+
+## all files for PPSSPP are in the current folder (OUTPUT)
 
 ## launch step
 ```$ LD_PRELOAD=mnt/usr/lib/libstdc++.so.6:mnt/lib/libc.so.6  ./PPSSPP XXXX.cso```
