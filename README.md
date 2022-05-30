@@ -3,6 +3,8 @@
 using prebuit image from batocera https://batocera.org/download and select RG552 model
 
 ## Get the image and extract 
+Copy the 'Direct Link' URL and get the image.
+For example, the URL is https://mirrors.o2switch.fr/batocera/rg552/stable/last/batocera-rg552-34-20220523.img.gz when writing this document
 ```
 $ wget https://mirrors.o2switch.fr/batocera/rg552/stable/last/batocera-rg552-34-20220309.img.gz
 $ gunzip ./batocera-rg552-34-20220309.img.gz
