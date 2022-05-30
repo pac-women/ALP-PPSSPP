@@ -73,7 +73,11 @@ $ cp -P batocera_partition/lib/* mnt/lib/
 $ cp -P batocera_partition/usr/lib/* mnt/usr/lib/ 
 ```
 
-## all files for PPSSPP are in the current folder (OUTPUT)
+## Rename OUTPUT to PPSSPP to pack
+```
+cd ..
+mv OUTPUT PPSSPP
+```
 
 ## launch step
 ```$ LD_PRELOAD=mnt/usr/lib/libstdc++.so.6:mnt/lib/libc.so.6  ./PPSSPP XXXX.cso```
