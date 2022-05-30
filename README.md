@@ -32,7 +32,8 @@ $ sudo mount -o loop,offset=16777216  ./batocera-rg552-34-20220309.img batocera_
 ```
 
 ## copy the root filesystem from first partition
-```$ cp batocera_partition/boot/batocera .
+```
+$ cp batocera_partition/boot/batocera .
 
 ## unmount it
 $ sudo umount batocera_partition
